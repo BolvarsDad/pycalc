@@ -1,3 +1,4 @@
+# Kalle
 import os
 #!/usr/bin/env python3
 
@@ -28,7 +29,8 @@ while True:
     )
 
     op = input("Selection > ")
-
+    # Kalle
+    # Karam
     if op in ops:
         print(f"Calculating 'c' for expression:\n\ta {ops[op]} b = c\nPlease enter values for 'a' and 'b'.")
     
@@ -46,6 +48,8 @@ while True:
     try:
         a = int(input("a = "))
         b = int(input("b = "))
+    # Karam
+    # Jasmine
     except Exception as e:
         print("Non-integer value entered as argument.")
         input("Press anything to continue")
@@ -56,7 +60,8 @@ while True:
         print("Attempted division by 0.")
         input("Press anything to continue")
         continue
-
+    # Jasmine
+    # Sinan
     match op:
         case "add": print(f"{a} + {b} = {a+b}")
 
@@ -68,3 +73,4 @@ while True:
         case "div": print(f"{a} / {b} = {a/b:.2f}")
 
     input("Press anything to continue.")
+    # Sinan
