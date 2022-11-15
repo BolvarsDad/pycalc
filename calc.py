@@ -1,11 +1,12 @@
+import os
 #!/usr/bin/env python3
 
 # Really only here because the assignment requires word inputs and
 # to make printing expressions easier.
 # Another way of doing this would be to use lambda expressions here,
 # e.g. "add": lambda a,b: print(f"{a} + {b} = {a+b}"),
-# in which case the input checks could be simplified to if op in ops: op(a,b)
-# I dislike that approach.
+# in which case the input checks could be simplified to something like 'if op in ops: op(a,b)'
+# I dislike that approach because it makes the dictionary very unreadable.
 ops = {
         "add": '+',
         "sub": '-',
@@ -13,9 +14,9 @@ ops = {
         "div": '/'
 }
 
-# I thought it was a more readable decision to define a helper function rather
-# than having it as a standalone print statement. Plus it declares what the text is for.
-def gui_help():
+while True:
+    os.system("clear")
+
     print(
         "┌───────┬─────────────────────────┐\n"
         "│  add  │ Add two numbers.        │\n" 
@@ -26,18 +27,13 @@ def gui_help():
         "└───────┴─────────────────────────┘"
     )
 
-while True:
-    # To achieve the same effect as the sandbox environment where the terminal screen
-    # gets cleared on every iteration, you could import the os module and do a syscall
-    # to clear the terminal window here, but I don't see a reason to import a whole module
-    # for an aesthetic difference.
-    gui_help()
-
     op = input("Selection > ")
 
     if op in ops:
         print(f"Calculating 'c' for expression:\n\ta {ops[op]} b = c\nPlease enter values for 'a' and 'b'.")
     
+    # Having a program that never exits an infinite loop is obviously bad, so I implemented
+    # 'exit' as a sentinel value the user can use to exit the program without explicitly killing it.
     elif op == "exit":
         print("Exiting the program")
         break
@@ -47,8 +43,19 @@ while True:
         input("Press anything to continue")
         continue
 
-    a = int(input("a = "))
-    b = int(input("b = "))
+    try:
+        a = int(input("a = "))
+        b = int(input("b = "))
+    except Exception as e:
+        print("Non-integer value entered as argument.")
+        input("Press anything to continue")
+        continue
+
+    # The demo actually prints that division by 0 results in infinity, which is is mathematically wrong.
+    if op == "div" and b == 0:
+        print("Attempted division by 0.")
+        input("Press anything to continue")
+        continue
 
     match op:
         case "add": print(f"{a} + {b} = {a+b}")
