@@ -50,7 +50,7 @@ while True:
         b = int(input("b = "))
     # Karam
     # Jasmine
-    except Exception as e:
+    except ValueError:
         print("Non-integer value entered as argument.")
         input("Press anything to continue")
         continue
