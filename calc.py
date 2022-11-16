@@ -51,7 +51,7 @@ while True:
     # Karam
     # Jasmine
     except ValueError:
-        print("Non-integer value entered as argument.")
+        print("Non-numerical value entered as argument.")
         input("Press anything to continue")
         continue
 
