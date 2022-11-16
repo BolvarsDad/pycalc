@@ -46,8 +46,8 @@ while True:
         continue
 
     try:
-        a = int(input("a = "))
-        b = int(input("b = "))
+        a = float(input("a = "))
+        b = float(input("b = "))
     # Karam
     # Jasmine
     except ValueError:
@@ -63,13 +63,12 @@ while True:
     # Jasmine
     # Sinan
     match op:
-        case "add": print(f"{a} + {b} = {a+b}")
+        case "add": print(f"{a} + {b} = {a+b:.2f}")
 
-        case "sub": print(f"{a} - {b} = {a-b}")
+        case "sub": print(f"{a} - {b} = {a-b:.2f}")
 
-        case "mul": print(f"{a} * {b} = {a*b}")
+        case "mul": print(f"{a} * {b} = {a*b:.2f}")
 
-        # The demo doesn't explicitly do this but I decided to clamp the result at two decimal places.
         case "div": print(f"{a} / {b} = {a/b:.2f}")
 
     input("Press anything to continue.")
